@@ -1,3 +1,5 @@
+from random import randint
+
 class WordBank:
     """
        Classe para gerenciar um banco de palavras carregado de um arquivo texto.
@@ -45,3 +47,6 @@ class WordBank:
             raise
 
         return word_bank
+
+    def choose_random_word(self) -> str:
+        return self.wordslist[randint(0, len(self.wordslist)) - 1]
