@@ -100,7 +100,7 @@ class PlaysManager():
         self.chosen_word = chosen_word
         self.incorrect_letters = list()
         self.right_letter_wrong_place = list()
-        self.temp_result = self.temp_result = ['_'] * len(self.chosen_word)
+        self.temp_result = self.temp_result = ['?'] * len(self.chosen_word)
         self.player_win = False
         self.player_name = player_name
 
@@ -141,17 +141,18 @@ class PlaysManager():
     def compare_words(self):
         placeholder = '_'
         for i in range(len(self.player_guess)):
-            if self.player_guess[i] not in self.chosen_word:
+            if self.player_guess[i] not in self.chosen_word: # if the letter is not on the word
                 if self.player_guess[i] not in self.incorrect_letters:
                     self.incorrect_letters.append(self.player_guess[i])
-            else:
+            else: # if the letters are equals in the same position
                 if self.player_guess[i] == self.chosen_word[i]:
                     self.temp_result[i] = self.player_guess[i]
-                else:
-                    if not self.temp_result[i]:
-                        self.temp_result[i] = placeholder
-                        if self.player_guess[i] not in self.right_letter_wrong_place:
+                else: # if the letter is on the word but not on the same position
+                    if self.player_guess[i] not in self.right_letter_wrong_place:
                             self.right_letter_wrong_place.append(self.player_guess[i])
+                            if self.temp_result[i] == '?': # if the place is empty
+                                self.temp_result[i] = placeholder
+                        
 
             if str(self.temp_result) == str(self.chosen_word):
                 self.player_win = True
@@ -160,6 +161,7 @@ class PlaysManager():
     def game_play(self):
         number_of_chances = 5
         current_play = 0
+        print(self.chosen_word)
         while True:
             self.player_guess = self.player_play()
             self.compare_words()
