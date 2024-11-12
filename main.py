@@ -11,7 +11,7 @@ def main() -> None:
 
     # Asks if the user want to play
     start_game = input('Deseja jogar [SIM] ou [NÃO]? ')
-    if start_game.lower() != 'sim':
+    if start_game.lower() == 'não' or start_game == 'nao':
         print('Ah, que pena. Espero te ver novamente!')
         quit()
 
