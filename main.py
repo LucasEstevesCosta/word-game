@@ -1,4 +1,5 @@
-from modules.wordbank import WordBank, PlaysManager
+from modules.wordbank import WordBank
+from modules.gameplay import PlaysManager
 from time import sleep
 
 GAME_NAME = 'Quasi-Forca'
@@ -21,7 +22,8 @@ def main() -> None:
     print()
 
     word_bank = WordBank()
-    manager = PlaysManager(word_bank.chosen_word, player_name)
+    random_word = word_bank.random_word
+    manager = PlaysManager(random_word, player_name)
     manager.game_play()
 
 
