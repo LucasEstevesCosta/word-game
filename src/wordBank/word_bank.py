@@ -19,7 +19,7 @@ class WordBank:
         """
         self.filename = filename
         self.wordslist = self.create_word_bank()
-        self.random_word = self.choose_random_word()
+        self.random_word = self.word_selector()
 
     def create_word_bank(self) -> list:
         """
@@ -49,8 +49,7 @@ class WordBank:
             print(f'O arquivo {self.filename} não foi encontrado.')
             raise
         except IOError as error:
-            print(f'ERRO: Falha ao ler o arquivo {
-                  self.filename}. Erro: {error}')
+            print(f'ERRO: Falha ao ler o arquivo {self.filename}. Erro: {error}')
             raise
         except Exception as error:
             print(f'ERRO. Erro inesperado ao processar o arquivo: {error}')
@@ -58,7 +57,7 @@ class WordBank:
 
         return word_bank
 
-    def choose_random_word(self) -> str:
+    def word_selector(self) -> str:
         """
         Selects a random word from the list of words.
         Args:
